@@ -1,0 +1,106 @@
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    #garden {
+      display: grid;
+      height: 100vh;
+      grid-template-rows: 2rem 1fr 200px;
+      grid-template-areas:
+        "header"
+        "main"
+        "footer"
+    }
+
+    header {
+      text-align: center;
+      width: 100%;
+    }
+
+    #header {
+      grid-area: header;
+      background-color: red;
+    }
+
+    #floating-header {
+      transform: scaleY(0);
+      background-color: white;
+      transition: all 0.5s ease-out;
+    }
+
+    #floating-header.sticky {
+      transform: scaleY(1);
+      position: fixed;
+      height: fit-content;
+      background-color: green;
+    }
+
+    main {
+      grid-area: main;
+      padding-left: 10rem;
+      padding-right: 10rem;
+      font-size: 5rem;
+    }
+
+    footer {
+      grid-area: footer;
+      width: 100%;
+      background-color: red;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="garden">
+    <header id="header"><p>Header stuff goes here</p></header>
+    <header id="floating-header"><p>Header stuff goes here</p></header>
+    <main>
+      <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc. Etiam erat velit scelerisque in dictum non consectetur. Nunc faucibus a pellentesque sit amet porttitor eget dolor morbi. Diam sit amet nisl suscipit adipiscing. Ac felis donec et odio pellentesque diam volutpat commodo. Mi eget mauris pharetra et ultrices neque ornare aenean. Egestas egestas fringilla phasellus faucibus. Mauris a diam maecenas sed enim ut sem viverra aliquet. Lacus suspendisse faucibus interdum posuere. Facilisis sed odio morbi quis. Et netus et malesuada fames ac turpis egestas sed tempus.
+      </p>
+      <p>
+Egestas diam in arcu cursus euismod quis. Condimentum id venenatis a condimentum vitae. Donec adipiscing tristique risus nec feugiat in. Tellus rutrum tellus pellentesque eu. Convallis a cras semper auctor. Sit amet nulla facilisi morbi tempus iaculis urna id volutpat. Nulla malesuada pellentesque elit eget gravida cum sociis natoque. Suscipit adipiscing bibendum est ultricies integer quis auctor elit sed. Erat nam at lectus urna duis convallis convallis tellus id. Porta nibh venenatis cras sed felis. Pellentesque sit amet porttitor eget.
+      </p>
+      <p>
+Velit euismod in pellentesque massa placerat duis ultricies lacus. Scelerisque eu ultrices vitae auctor eu augue. Vestibulum sed arcu non odio euismod lacinia at. Diam phasellus vestibulum lorem sed risus. Tortor at auctor urna nunc id cursus metus aliquam. Consequat nisl vel pretium lectus quam id. Maecenas accumsan lacus vel facilisis. Fames ac turpis egestas sed tempus urna. Maecenas sed enim ut sem viverra. Amet dictum sit amet justo donec enim. Faucibus turpis in eu mi bibendum neque egestas congue quisque.
+      </p>
+      <p>
+Diam sit amet nisl suscipit adipiscing bibendum est ultricies. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Eu mi bibendum neque egestas congue quisque egestas diam in. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Mollis aliquam ut porttitor leo. Mattis molestie a iaculis at erat pellentesque adipiscing commodo. Tristique senectus et netus et malesuada fames ac. Amet consectetur adipiscing elit ut aliquam. Aliquam etiam erat velit scelerisque in. Nec ultrices dui sapien eget mi proin sed libero. A pellentesque sit amet porttitor eget dolor morbi non. Luctus venenatis lectus magna fringilla urna. Morbi tristique senectus et netus. Amet mauris commodo quis imperdiet massa. Tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Non quam lacus suspendisse faucibus interdum.
+      </p>
+      <p>
+Ac turpis egestas sed tempus. Vel facilisis volutpat est velit egestas. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Pellentesque habitant morbi tristique senectus et netus et. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Tempor orci dapibus ultrices in iaculis nunc sed augue lacus. Tortor pretium viverra suspendisse potenti nullam ac tortor vitae purus. Faucibus nisl tincidunt eget nullam. Tincidunt vitae semper quis lectus. Arcu ac tortor dignissim convallis aenean et tortor. Faucibus et molestie ac feugiat sed lectus. Massa massa ultricies mi quis. Blandit libero volutpat sed cras ornare arcu dui vivamus arcu. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt.
+      </p>
+    </main>
+    <footer><p>Footer stuff</p></footer>
+  </div>
+</body>
+<script type="text/javascript">
+  var scrollableElement = document.body; //document.getElementById('scrollableElement');
+  var header = document.getElementById("floating-header");
+  var mainHeader = document.getElementById("header");
+
+  scrollableElement.addEventListener('wheel', checkScrollDirection);
+
+  function checkScrollDirection(event) {
+    if (checkScrollDirectionIsUp(event) && document.body.scrollTop > mainHeader.clientHeight) {
+      if (!header.classList.contains("sticky")) {
+        header.classList.add("sticky");
+      }
+    } else {
+      if (header.classList.contains("sticky")) {
+        header.classList.remove("sticky");
+      }
+    }
+  }
+
+  function checkScrollDirectionIsUp(event) {
+    if (event.wheelDelta) {
+      return event.wheelDelta > 0;
+    }
+    return event.deltaY < 0;
+  }
+</script>
+</html>
