@@ -43,14 +43,14 @@
       padding: 0 20%;
       font-size: 2rem;
     }
-	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+    
     footer {
       grid-area: footer;
       display: grid;
       grid-template-columns: 20% 20% 1fr;
       width: 100%;
       background-color: darkslategray;
+      color: white;
       text-align: center;
     }
 
@@ -58,9 +58,66 @@
       text-align: center;
     }
 
+    #mc_embed_signup {
+      grid-column-start: 2;
+    }
   </style>
 </head>
 <body>
+  <template id="sign-up">
+    <style type="text/css">
+      form {
+        display: grid;
+        grid-gap: 1rem 0.25rem;
+        grid-template-areas:
+          "title title"
+          "fname lname"
+          "email email"
+          "submit submit"
+      }
+
+      form input {
+        padding: 0.25rem;
+        border-radius: 2.5px; 
+      }
+
+      form h2 {
+        grid-area: title;
+      }
+
+      form input[name="FNAME"] {
+        grid-area: fname;
+      }
+
+      form input[name="LNAME"] {
+        grid-area: lname;
+      }
+
+      form input[name="EMAIL"] {
+        grid-area: email;
+      }
+
+      input:invalid {
+        border: 1px solid red;
+      }
+
+      input[type="submit"] {
+        grid-area: submit;
+      }
+
+    </style>
+    <div id="mc_embed_signup">
+      <form action="https://gmail.us11.list-manage.com/subscribe/post?u=8e14ef99f88d9b5af62b51a92&amp;id=e6dafc7af4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+        <h2>Get on the list!</h2>
+        <input type="text" placeholder="First Name" name="FNAME" class="" id="mce-FNAME">
+        <input type="text" placeholder="Last Name" name="LNAME" class="" id="mce-LNAME">
+        <input type="email" placeholder="Email Address" name="EMAIL" required id="mce-EMAIL">
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_8e14ef99f88d9b5af62b51a92_e6dafc7af4" tabindex="-1" value=""></div>
+        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+      </form>
+    </div>
+  </template>
   <template id="site-header">
     <style>
       header {
@@ -133,62 +190,7 @@
       </article>
     </main>
     <footer>
-      <style type="text/css">
-        #mc_embed_signup {
-          grid-column-start: 2;
-        }
-
-        form {
-          display: grid;
-          grid-template-areas:
-            "title title"
-            "fname lname"
-            "email email"
-            "submit submit"
-        }
-
-        form input {
-          margin-top: 1rem;
-          padding: 0.25rem;
-          border-radius: 2.5px; 
-        }
-
-        form h2 {
-          grid-area: title;
-        }
-
-        form input[name="FNAME"] {
-          grid-area: fname;
-        }
-
-        form input[name="LNAME"] {
-          grid-area: lname;
-        }
-
-        form input[name="EMAIL"] {
-          grid-area: email;
-        }
-
-        input:invalid {
-          border: 1px solid red;
-        }
-
-        input[type="submit"] {
-          grid-area: submit;
-        }
-
-      </style>
-      <div id="mc_embed_signup">
-        <form action="https://gmail.us11.list-manage.com/subscribe/post?u=8e14ef99f88d9b5af62b51a92&amp;id=e6dafc7af4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-          <h2>Get on the list!</h2>
-          <input type="text" value="" name="FNAME" class="" id="mce-FNAME" required>
-          <input type="text" value="" name="LNAME" class="" id="mce-LNAME" required>
-          <input type="email" placeholder="Email Address" name="EMAIL" required id="mce-EMAIL">
-          <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_8e14ef99f88d9b5af62b51a92_e6dafc7af4" tabindex="-1" value=""></div>
-          <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
-        </form>
-      </div>
+      <sign-up id="mc_embed_signup"></sign-up>
     </footer>
   </div>
 </body>
@@ -219,8 +221,10 @@
   }
 </script>
 <script type="module">
-  import { initialize } from './site-header.js';
+  import { initialize as initializeSiteHeader } from './site-header.js';
+  import { initialize as initializeSignUp } from './sign-up.js';
 
-  initialize();
+  initializeSiteHeader();
+  initializeSignUp();
 </script>
 </html>
