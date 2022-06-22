@@ -29,16 +29,16 @@
     #floating-header.sticky {
       transform: scaleY(1);
       position: fixed;
-      height: fit-content;
+      height: 50px;
     }
 
     main {
       grid-area: main;
-      font-size: 5rem;
     }
 
     main article {
-      padding: 0 10rem;
+      padding: 0 20%;
+      font-size: 2rem;
     }
 
     footer {
@@ -93,22 +93,6 @@
 
   <div id="garden">
     <site-header id="header"></site-header>
-    <!--
-    <header id="header">
-      <div class="logo">
-        <p>SaxyMofo</p>
-      </div>
-      <div></div>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/">Shows</a>
-        <a href="/">Lessons</a>
-      </nav>
-    </header>
-    -->
-    <!--
-    <header id="floating-header"><p>Header stuff goes here</p></header>
-    -->
     <site-header id="floating-header"></site-header>
     <main>
       <section id="hero">
@@ -116,19 +100,26 @@
       </section>
       <article>
         <p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc. Etiam erat velit scelerisque in dictum non consectetur. Nunc faucibus a pellentesque sit amet porttitor eget dolor morbi. Diam sit amet nisl suscipit adipiscing. Ac felis donec et odio pellentesque diam volutpat commodo. Mi eget mauris pharetra et ultrices neque ornare aenean. Egestas egestas fringilla phasellus faucibus. Mauris a diam maecenas sed enim ut sem viverra aliquet. Lacus suspendisse faucibus interdum posuere. Facilisis sed odio morbi quis. Et netus et malesuada fames ac turpis egestas sed tempus.
+          Sam Slotsky is a saxophonist based in the Twin Cities, Minnesota.
+          During daylight he appears cleverly disguised as a mild mannered
+          software engineer, but alas, do not be fooled. In reality, Sam
+          exists in an ontological state in which he is either playing the
+          saxophone, or wishes to be playing the saxophone. He is Schrodinger's
+          Hepcat, and only by observing him will the wave function collapse and
+          reveal his actual state.
         </p>
         <p>
-  Egestas diam in arcu cursus euismod quis. Condimentum id venenatis a condimentum vitae. Donec adipiscing tristique risus nec feugiat in. Tellus rutrum tellus pellentesque eu. Convallis a cras semper auctor. Sit amet nulla facilisi morbi tempus iaculis urna id volutpat. Nulla malesuada pellentesque elit eget gravida cum sociis natoque. Suscipit adipiscing bibendum est ultricies integer quis auctor elit sed. Erat nam at lectus urna duis convallis convallis tellus id. Porta nibh venenatis cras sed felis. Pellentesque sit amet porttitor eget.
+          Sam plays soprano, alto, and baritone saxophones and has experience
+          collaborating with musicians across many genres, including jazz, blues,
+          classic rock, bluegrass, and klezmer music. He currently plays as a sideman
+          with the 2nd Mouse jazz trio and Erik Christenson's blues band, and performs
+          a solo act at the Crystal Farmers Market.
         </p>
         <p>
-  Velit euismod in pellentesque massa placerat duis ultricies lacus. Scelerisque eu ultrices vitae auctor eu augue. Vestibulum sed arcu non odio euismod lacinia at. Diam phasellus vestibulum lorem sed risus. Tortor at auctor urna nunc id cursus metus aliquam. Consequat nisl vel pretium lectus quam id. Maecenas accumsan lacus vel facilisis. Fames ac turpis egestas sed tempus urna. Maecenas sed enim ut sem viverra. Amet dictum sit amet justo donec enim. Faucibus turpis in eu mi bibendum neque egestas congue quisque.
-        </p>
-        <p>
-  Diam sit amet nisl suscipit adipiscing bibendum est ultricies. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Eu mi bibendum neque egestas congue quisque egestas diam in. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Mollis aliquam ut porttitor leo. Mattis molestie a iaculis at erat pellentesque adipiscing commodo. Tristique senectus et netus et malesuada fames ac. Amet consectetur adipiscing elit ut aliquam. Aliquam etiam erat velit scelerisque in. Nec ultrices dui sapien eget mi proin sed libero. A pellentesque sit amet porttitor eget dolor morbi non. Luctus venenatis lectus magna fringilla urna. Morbi tristique senectus et netus. Amet mauris commodo quis imperdiet massa. Tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Non quam lacus suspendisse faucibus interdum.
-        </p>
-        <p>
-  Ac turpis egestas sed tempus. Vel facilisis volutpat est velit egestas. Diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Pellentesque habitant morbi tristique senectus et netus et. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Tempor orci dapibus ultrices in iaculis nunc sed augue lacus. Tortor pretium viverra suspendisse potenti nullam ac tortor vitae purus. Faucibus nisl tincidunt eget nullam. Tincidunt vitae semper quis lectus. Arcu ac tortor dignissim convallis aenean et tortor. Faucibus et molestie ac feugiat sed lectus. Massa massa ultricies mi quis. Blandit libero volutpat sed cras ornare arcu dui vivamus arcu. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt.
+          Sam studied music at the University of Iowa with a focus in jazz studies.
+          It is here that he also earned a computer science degree in order to 
+          maintain his daytime ruse. Again, please do not be fooled by his mild
+          mannered appearance.
         </p>
       </article>
     </main>
@@ -136,7 +127,7 @@
   </div>
 </body>
 <script type="text/javascript">
-  var scrollableElement = document.body; //document.getElementById('scrollableElement');
+  var scrollableElement = document.body;
   var header = document.getElementById("floating-header");
   var mainHeader = document.getElementById("header");
 
@@ -160,18 +151,10 @@
     }
     return event.deltaY < 0;
   }
+</script>
+<script type="module">
+  import { initialize } from './site-header.js';
 
-  customElements.define('site-header',
-    class extends HTMLElement {
-      constructor() {
-        super();
-        const template = document
-          .getElementById('site-header')
-          .content;
-        const shadowRoot = this.attachShadow({mode: 'open'});
-        shadowRoot.appendChild(template.cloneNode(true));
-      }
-    }
-  );
+  initialize();
 </script>
 </html>
