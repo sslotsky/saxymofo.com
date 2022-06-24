@@ -70,54 +70,60 @@
     sign-up {
       grid-column-start: 2;
     }
+
+    a {
+      text-decoration: none;
+    }
+
+    #header {
+      text-align: center;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 25% 1fr 1fr;
+      background-color: #fff;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    #header h1 {
+      font-size: 1.5rem;
+    }
+
+    #header nav {
+      text-align: left;
+      align-self: center;
+    }
+
+    #header nav a {
+      margin-right: 1rem;
+    }
+
+    #header .logo {
+      text-align: right;
+    }
   </style>
+
+  <script type="module" defer>
+    import { initialize as initializeSiteHeader } from './site-header.js';
+    import { initialize as initializeSignUp } from './sign-up.js';
+
+    initializeSiteHeader();
+    initializeSignUp();
+  </script>
 </head>
 <body>
-  <template id="site-header">
-    <style>
-      header {
-        text-align: center;
-        width: 100%;
-        display: grid;
-        grid-template-columns: 25% 1fr 1fr;
-        background-color: #fff;
-        font-family: 'Hind Siliguri', sans-serif;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      nav {
-        text-align: left;
-        align-self: center;
-      }
-
-      a {
-        text-decoration: none;
-        margin-right: 1rem;
-      }
-
-      .logo {
-        text-align: right;
-      }
-    </style>
-    <header>
-      <div class="logo">
-        <h1><a href="/">SaxyMofo</a></h1>
-      </div>
-      <div></div>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/">Shows</a>
-        <a href="/">Videos</a>
-        <a href="/">Lessons</a>
-      </nav>
-    </header>
-  </template>
-
   <div id="garden">
-    <site-header id="header"></site-header>
+      <header id="header">
+        <div class="logo">
+          <h1><a href="/">SaxyMofo</a></h1>
+        </div>
+        <div></div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/">Shows</a>
+          <a href="/">Videos</a>
+          <a href="/">Lessons</a>
+        </nav>
+      </header>
     <site-header id="floating-header"></site-header>
     <main>
       <section id="hero"></section>
@@ -178,12 +184,5 @@
     }
     return event.deltaY < 0;
   }
-</script>
-<script type="module">
-  import { initialize as initializeSiteHeader } from './site-header.js';
-  import { initialize as initializeSignUp } from './sign-up.js';
-
-  initializeSiteHeader();
-  initializeSignUp();
 </script>
 </html>
