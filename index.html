@@ -105,25 +105,30 @@
   <script type="module" defer>
     import { initialize as initializeSiteHeader } from './site-header.js';
     import { initialize as initializeSignUp } from './sign-up.js';
+    import { initialize as initializeLessonLink } from './lesson-link.js';
 
     initializeSiteHeader();
     initializeSignUp();
+    initializeLessonLink();
   </script>
+
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body>
   <div id="garden">
-      <header id="header">
-        <div class="logo">
-          <h1><a href="/">SaxyMofo</a></h1>
-        </div>
-        <div></div>
-        <nav>
-          <a href="/">Home</a>
-          <a href="/">Shows</a>
-          <a href="/">Videos</a>
-          <a href="/">Lessons</a>
-        </nav>
-      </header>
+    <header id="header">
+      <div class="logo">
+        <h1><a href="/">SaxyMofo</a></h1>
+      </div>
+      <div></div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/">Shows</a>
+        <a href="/">Videos</a>
+        <a is="lesson-link" href="">Lessons</a>
+      </nav>
+    </header>
     <site-header id="floating-header"></site-header>
     <main>
       <section id="hero"></section>

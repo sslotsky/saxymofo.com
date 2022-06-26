@@ -44,7 +44,7 @@ class SiteHeader extends LitElement {
           <a href="/">Home</a>
           <a href="/">Shows</a>
           <a href="/">Videos</a>
-          <a href="/">Lessons</a>
+          <a is="lesson-link" href="">Lessons</a>
         </nav>
       </header>
     `
