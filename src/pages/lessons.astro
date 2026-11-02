@@ -1,0 +1,96 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+
+const topics = [
+  {
+    title: "Saxophone",
+    body: "Soprano, alto or bari. Tone, breathing, technique and reading, at whatever level you're starting from.",
+  },
+  {
+    title: "Improvisation",
+    body: "Soloing over changes, learning by ear, transcribing, and building a vocabulary that sounds like you.",
+  },
+  {
+    title: "Music theory",
+    body: "Scales, chords and harmony, aimed at the music you actually want to play.",
+  },
+];
+---
+
+<Base
+  title="Lessons"
+  description="Saxophone, improvisation and music theory lessons with Sam Slotsky."
+>
+  <section class="section wrap">
+    <p class="eyebrow">Lessons</p>
+    <h1>
+      Learn to <em class="flourish">swing</em>
+    </h1>
+    <p class="lede">
+      Lessons for players at any level, from first notes to finding your own
+      voice on the bandstand. Start with a free 30-minute intro, and we'll
+      figure out the rest from there.
+    </p>
+    <div class="topics">
+      {topics.map((topic) => (
+        <div class="card">
+          <h3>{topic.title}</h3>
+          <p class="muted">{topic.body}</p>
+        </div>
+      ))}
+    </div>
+    <a class="button big" href={site.calendly} data-calendly>
+      Book a free intro
+    </a>
+  </section>
+</Base>
+
+<link
+  href="https://assets.calendly.com/assets/external/widget.css"
+  rel="stylesheet"
+/>
+<script
+  is:inline
+  src="https://assets.calendly.com/assets/external/widget.js"
+  async
+></script>
+<script>
+  declare global {
+    interface Window {
+      Calendly?: { initPopupWidget: (options: { url: string }) => void };
+    }
+  }
+
+  for (const link of document.querySelectorAll<HTMLAnchorElement>(
+    "a[data-calendly]",
+  )) {
+    link.addEventListener("click", (event) => {
+      if (!window.Calendly) return;
+      event.preventDefault();
+      window.Calendly.initPopupWidget({ url: link.href });
+    });
+  }
+</script>
+
+<style>
+  h1 {
+    font-size: clamp(3rem, 9vw, 5.5rem);
+  }
+
+  .topics {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    margin-block: 2.5rem;
+  }
+
+  .topics p {
+    margin: 0;
+  }
+
+  .big {
+    font-size: 1.2rem;
+    padding: 1rem 1.75rem;
+  }
+</style>

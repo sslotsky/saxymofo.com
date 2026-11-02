@@ -1,0 +1,88 @@
+---
+import { nav, site } from "../data/site";
+
+const path = Astro.url.pathname.replace(/\/?$/, "/");
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="wordmark" href="/" aria-label={`${site.name} home`}>
+      Saxy<span>Mofo</span>
+    </a>
+    <nav aria-label="Main">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          aria-current={path === item.href ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgb(21 14 27 / 0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .wordmark {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.6rem;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    text-decoration: none;
+  }
+
+  .wordmark span {
+    color: var(--tangerine);
+  }
+
+  nav {
+    display: flex;
+    gap: clamp(0.75rem, 3vw, 1.75rem);
+  }
+
+  nav a {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding-block: 0.35rem;
+    border-bottom: 2px solid transparent;
+  }
+
+  nav a:hover {
+    color: var(--paper);
+  }
+
+  nav a[aria-current="page"] {
+    color: var(--paper);
+    border-bottom-color: var(--tangerine);
+  }
+
+  @media (max-width: 30rem) {
+    .bar {
+      justify-content: center;
+      padding-block: 0.5rem;
+      gap: 0.25rem;
+    }
+  }
+</style>

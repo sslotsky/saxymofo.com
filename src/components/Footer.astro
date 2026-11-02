@@ -1,0 +1,68 @@
+---
+import SignUp from "./SignUp.astro";
+import { site } from "../data/site";
+---
+
+<footer class="site-footer">
+  <div class="wrap section">
+    <SignUp />
+  </div>
+  <div class="wrap base">
+    <p>{`© ${new Date().getFullYear()} ${site.person}`}</p>
+    <ul>
+      <li>
+        <a href={site.instagram} rel="me">
+          Instagram
+        </a>
+      </li>
+      <li>
+        <a href={site.x} rel="me">
+          X
+        </a>
+      </li>
+      <li>
+        <a href={site.devSite}>The day job</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background:
+      linear-gradient(180deg, rgb(122 52 99 / 0.28), transparent 18rem),
+      var(--night);
+  }
+
+  .base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.5rem 2rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .base p {
+    margin: 0;
+  }
+
+  ul {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: var(--muted);
+  }
+
+  a:hover {
+    color: var(--brass);
+  }
+</style>
