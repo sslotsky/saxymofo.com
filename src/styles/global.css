@@ -3,15 +3,15 @@
 @import "@fontsource-variable/inter";
 
 :root {
-  --bg: #150e1b;
-  --surface: #211628;
-  --line: #3b2a45;
-  --text: #f5ebd9;
-  --muted: #bcaebf;
-  --accent: #ff7847;
-  --accent-bright: #ff9a6e;
-  --accent-2: #e6b656;
-  --glow: #7a3463;
+  --bg: #0e1814;
+  --surface: #15241e;
+  --line: #29402f;
+  --text: #f1ead9;
+  --muted: #a9b8ad;
+  --accent: #e9a23b;
+  --accent-bright: #f6bd62;
+  --accent-2: #d9cfae;
+  --glow: #1e5a43;
   --frame: var(--text);
 
   --display: "Bricolage Grotesque Variable", "Arial Narrow", sans-serif;
@@ -23,47 +23,6 @@
   --radius: 14px;
 
   color-scheme: dark;
-}
-
-/* Candidate palettes, previewed with <html data-palette="..."> */
-[data-palette="blue-note"] {
-  --bg: #0b1626;
-  --surface: #12223a;
-  --line: #22395a;
-  --text: #f3ecdc;
-  --muted: #a8b4c6;
-  --accent: #f4c430;
-  --accent-bright: #ffd95e;
-  --accent-2: #e5533d;
-  --glow: #1f4f8f;
-  --frame: #f3ecdc;
-}
-
-[data-palette="green-room"] {
-  --bg: #0e1814;
-  --surface: #15241e;
-  --line: #29402f;
-  --text: #f1ead9;
-  --muted: #a9b8ad;
-  --accent: #e9a23b;
-  --accent-bright: #f6bd62;
-  --accent-2: #d9cfae;
-  --glow: #1e5a43;
-  --frame: #f1ead9;
-}
-
-[data-palette="handbill"] {
-  --bg: #f2e8d5;
-  --surface: #fbf5e8;
-  --line: #d8c9ab;
-  --text: #1c1915;
-  --muted: #5d554a;
-  --accent: #c9361f;
-  --accent-bright: #a92a16;
-  --accent-2: #1f4a7a;
-  --glow: #e9b949;
-  --frame: #1c1915;
-  color-scheme: light;
 }
 
 *,

@@ -26,7 +26,7 @@ const image = new URL("/og.jpg", Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#150e1b" />
+    <meta name="theme-color" content="#0e1814" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
@@ -37,11 +37,6 @@ const image = new URL("/og.jpg", Astro.site);
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@TheSaxyMofo" />
-    <script is:inline>
-      // Temporary: preview candidate palettes with ?palette=blue-note|green-room|handbill
-      const palette = new URLSearchParams(location.search).get("palette");
-      if (palette) document.documentElement.dataset.palette = palette;
-    </script>
   </head>
   <body>
     <a class="skip visually-hidden" href="#main">
