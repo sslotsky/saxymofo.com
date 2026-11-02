@@ -1,0 +1,113 @@
+---
+import { formatDate, type Show } from "../lib/shows";
+
+interface Props {
+  shows: Show[];
+  past?: boolean;
+}
+
+const { shows, past = false } = Astro.props;
+---
+
+<ol class:list={["shows", { past }]}>
+  {shows.map((show) => {
+    const d = formatDate(show.data.date);
+    return (
+      <li>
+        <time datetime={d.iso}>
+          <span class="month">{d.month}</span>
+          <span class="day">{d.day}</span>
+          <span class="weekday">{past ? d.year : d.weekday}</span>
+        </time>
+        <div class="info">
+          <h3>{show.data.venue}</h3>
+          <p class="muted">
+            {[show.data.band, show.data.city, show.data.time]
+              .filter(Boolean)
+              .join(" · ")}
+          </p>
+          {show.body?.trim() && <p class="note">{show.body.trim()}</p>}
+        </div>
+        {show.data.link && !past && (
+          <a class="button ghost" href={show.data.link}>
+            Details
+          </a>
+        )}
+      </li>
+    );
+  })}
+</ol>
+
+<style>
+  .shows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  time {
+    display: grid;
+    justify-items: center;
+    min-width: 4rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--display);
+    line-height: 1;
+  }
+
+  .month,
+  .weekday {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .day {
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  h3 {
+    margin: 0 0 0.2rem;
+  }
+
+  .info p {
+    margin: 0;
+  }
+
+  .note {
+    margin-top: 0.35rem !important;
+  }
+
+  .past time {
+    background: var(--line);
+    color: var(--text);
+  }
+
+  @media (max-width: 34rem) {
+    li {
+      grid-template-columns: auto 1fr;
+    }
+
+    li .button {
+      grid-column: 1 / -1;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+import Base from "../layouts/Base.astro";
+import ShowList from "../components/ShowList.astro";
+import { getShows } from "../lib/shows";
+import { bands } from "../data/site";
+
+const { upcoming, past } = await getShows();
+---
+
+<Base title="Shows" description="Where to catch Sam Slotsky on saxophone next.">
+  <section class="section wrap">
+    <p class="eyebrow">Shows</p>
+    <h1>Catch a set</h1>
+    {upcoming.length > 0 ? (
+      <ShowList shows={upcoming} />
+    ) : (
+      <p class="card empty">
+        Nothing posted right now. Check{" "}
+        {bands.map((band, i) => (
+          <>
+            {i > 0 && ", "}
+            <a href={band.href}>{band.name}</a>
+          </>
+        ))}{" "}
+        for their schedule, or get on the list below.
+      </p>
+    )}
+  </section>
+  {past.length > 0 && (
+    <section class="section wrap past">
+      <h2>Past shows</h2>
+      <ShowList shows={past.slice(0, 12)} past />
+    </section>
+  )}
+</Base>
+
+<style>
+  h1 {
+    font-size: clamp(3rem, 9vw, 5.5rem);
+  }
+
+  .past {
+    padding-top: 0;
+  }
+
+  .empty {
+    color: var(--muted);
+    margin: 0;
+  }
+</style>

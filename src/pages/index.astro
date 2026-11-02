@@ -1,0 +1,345 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import ShowList from "../components/ShowList.astro";
+import portrait from "../assets/portrait.jpg";
+import patio from "../assets/patio.jpg";
+import { bands, genres, site } from "../data/site";
+import { getShows } from "../lib/shows";
+
+const { upcoming } = await getShows();
+const next = upcoming.slice(0, 3);
+---
+
+<Base>
+  <section class="hero wrap">
+    <div class="intro">
+      <p class="eyebrow">{site.tagline}</p>
+      <h1>
+        Saxy<span>Mofo</span>
+      </h1>
+      <p class="lede">
+        {site.person} on soprano, alto and tenor. Jazz on a good night, blues on
+        a better one, and klezmer whenever anyone lets him.
+      </p>
+      <div class="actions">
+        <a class="button" href="/shows/">
+          See shows
+        </a>
+        <a class="button ghost" href="/lessons/">
+          Book a lesson
+        </a>
+      </div>
+    </div>
+    <figure class="portrait">
+      <Image
+        src={portrait}
+        alt="Sam Slotsky playing a curved soprano saxophone"
+        widths={[400, 640, 984]}
+        sizes="(min-width: 56rem) 26rem, 80vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+  </section>
+
+  <div class="band-clip">
+    <div class="marquee" aria-hidden="true">
+      <div class="track">
+        {[0, 1].map(() => (
+          <span>
+            {genres.map((genre) => (
+              <>
+                {genre}
+                <i>✦</i>
+              </>
+            ))}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <section class="section wrap about">
+    <div>
+      <p class="eyebrow">About</p>
+      <h2>
+        Schrödinger's <em class="flourish">Hepcat</em>
+      </h2>
+    </div>
+    <div class="bio">
+      <p>
+        By day, Sam appears cleverly disguised as a mild-mannered software
+        engineer. Do not be fooled. In reality he exists in one of two states:
+        playing the saxophone, or wishing he were. Only by observing him does
+        the wave function collapse.
+      </p>
+      <p>
+        He plays soprano, alto and tenor, and he's sat in across jazz, blues,
+        classic rock, bluegrass and klezmer. He's available for gigs, and for
+        lessons in saxophone, improvisation and music theory.
+      </p>
+      <p>
+        He earned a BA in Computer Science and Jazz Studies at the University of
+        Iowa, which explains the disguise.
+      </p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <p class="eyebrow">Plays with</p>
+    <div class="bands">
+      {bands.map((band) => (
+        <a class="card band" href={band.href}>
+          <h3>{band.name}</h3>
+          <p class="muted">{band.blurb}</p>
+          <span class="arrow" aria-hidden="true">
+            →
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <figure class="patio">
+    <Image
+      src={patio}
+      alt="Sam playing alto on a patio stage under string lights"
+      widths={[720, 1080]}
+      sizes="100vw"
+    />
+  </figure>
+
+  <section class="section wrap">
+    <div class="heading-row">
+      <div>
+        <p class="eyebrow">On the calendar</p>
+        <h2>Next shows</h2>
+      </div>
+      <a href="/shows/">All shows →</a>
+    </div>
+    {next.length > 0 ? (
+      <ShowList shows={next} />
+    ) : (
+      <p class="card empty">
+        Nothing posted yet. Get on the list below and you'll hear about the next
+        one first.
+      </p>
+    )}
+  </section>
+
+  <section class="section wrap">
+    <div class="card lessons">
+      <div>
+        <p class="eyebrow">Lessons</p>
+        <h2>
+          Learn to <em class="flourish">swing</em>
+        </h2>
+        <p class="muted">
+          Saxophone, improvisation and music theory, for players at any level.
+          Start with a free 30-minute intro.
+        </p>
+      </div>
+      <a class="button" href="/lessons/">
+        How lessons work
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding-block: clamp(2.5rem, 7vw, 5rem) clamp(2.5rem, 6vw, 4rem);
+  }
+
+  @media (min-width: 56rem) {
+    .hero {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  h1 {
+    font-size: clamp(4.25rem, 13vw, 9.5rem);
+    font-variation-settings: "wdth" 75;
+    letter-spacing: -0.045em;
+    line-height: 0.85;
+    margin-bottom: 0.3em;
+  }
+
+  h1 span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .portrait {
+    margin: 0;
+    justify-self: center;
+    width: min(100%, 26rem);
+    rotate: 2deg;
+    padding: 0.6rem;
+    background: var(--frame);
+    border-radius: 6px;
+    box-shadow:
+      0 30px 60px -20px rgb(0 0 0 / 0.7),
+      -14px 14px 0 var(--glow);
+  }
+
+  .portrait img {
+    border-radius: 2px;
+  }
+
+  .band-clip {
+    overflow: hidden;
+    padding-block: 1.5rem;
+  }
+
+  .marquee {
+    overflow: hidden;
+    border-block: 1px solid var(--line);
+    background: var(--accent-2);
+    color: var(--bg);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    rotate: -1deg;
+    margin-inline: -2rem;
+  }
+
+  .track {
+    display: flex;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+  }
+
+  .track span {
+    display: flex;
+    gap: 1.25rem;
+    padding: 0.6rem 0.625rem;
+    white-space: nowrap;
+  }
+
+  .track i {
+    font-style: normal;
+    color: var(--glow);
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .about {
+    display: grid;
+    gap: 1.5rem 4rem;
+  }
+
+  @media (min-width: 56rem) {
+    .about {
+      grid-template-columns: 1fr 1.4fr;
+    }
+  }
+
+  .bio p:first-child {
+    font-size: 1.2rem;
+  }
+
+  .bands {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  }
+
+  .band {
+    position: relative;
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.15s;
+    padding-right: 3.5rem;
+  }
+
+  .band h3 {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+  }
+
+  .band p {
+    margin: 0;
+  }
+
+  .band:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+
+  .arrow {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--accent);
+  }
+
+  .patio {
+    margin: 0;
+  }
+
+  .patio img {
+    width: 100%;
+    height: clamp(16rem, 45vw, 34rem);
+    object-fit: cover;
+    object-position: 50% 40%;
+  }
+
+  .heading-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .heading-row h2 {
+    margin: 0;
+  }
+
+  .empty {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .lessons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    align-items: end;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--glow) 50%, transparent),
+      var(--surface) 60%
+    );
+  }
+
+  .lessons > div {
+    max-width: 36rem;
+  }
+
+  .lessons p:last-child {
+    margin: 0;
+  }
+</style>

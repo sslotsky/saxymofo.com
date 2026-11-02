@@ -1,0 +1,148 @@
+---
+const action =
+  "https://gmail.us11.list-manage.com/subscribe/post?u=8e14ef99f88d9b5af62b51a92&id=e6dafc7af4";
+---
+
+<form class="signup" method="post" action={action} target="_blank" data-signup>
+  <div class="copy">
+    <h2 data-title>Get on the list</h2>
+    <p class="muted" data-message>
+      Show announcements, now and then. Nothing else.
+    </p>
+  </div>
+  <div class="fields">
+    <label>
+      <span class="visually-hidden">First name</span>
+      <input
+        type="text"
+        name="FNAME"
+        placeholder="First name"
+        autocomplete="given-name"
+      />
+    </label>
+    <label>
+      <span class="visually-hidden">Last name</span>
+      <input
+        type="text"
+        name="LNAME"
+        placeholder="Last name"
+        autocomplete="family-name"
+      />
+    </label>
+    <label class="email">
+      <span class="visually-hidden">Email address</span>
+      <input
+        type="email"
+        name="EMAIL"
+        placeholder="Email address"
+        autocomplete="email"
+        required
+      />
+    </label>
+    <!-- Mailchimp's bot trap: real people never fill this in. -->
+    <div class="trap" aria-hidden="true">
+      <input
+        type="text"
+        name="b_8e14ef99f88d9b5af62b51a92_e6dafc7af4"
+        tabindex="-1"
+        value=""
+      />
+    </div>
+    <button class="button" type="submit">
+      Subscribe
+    </button>
+  </div>
+</form>
+
+<script>
+  for (const form of document.querySelectorAll<HTMLFormElement>(
+    "form[data-signup]",
+  )) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = form.querySelector("button")!;
+      button.disabled = true;
+      const url =
+        form.action.replace("/subscribe/post?", "/subscribe/post-json?") +
+        "&c=?";
+      await fetch(url, {
+        method: "POST",
+        body: new FormData(form),
+        mode: "no-cors",
+      });
+      form.querySelector("[data-title]")!.textContent = "Thank you!";
+      form.querySelector("[data-message]")!.textContent =
+        "You're on the list. See you at a show.";
+      for (const input of form.querySelectorAll("input")) input.readOnly = true;
+    });
+  }
+</script>
+
+<style>
+  .signup {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    align-items: end;
+  }
+
+  @media (min-width: 52rem) {
+    .signup {
+      grid-template-columns: 1fr 1.4fr;
+    }
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 0.25em;
+  }
+
+  .copy p {
+    margin: 0;
+  }
+
+  .fields {
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .email {
+    grid-column: 1 / -1;
+  }
+
+  input {
+    width: 100%;
+    font: inherit;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+  }
+
+  input::placeholder {
+    color: var(--muted);
+  }
+
+  input:focus {
+    border-color: var(--accent-2);
+    outline: none;
+  }
+
+  .trap {
+    position: absolute;
+    left: -5000px;
+  }
+
+  button {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: default;
+    transform: none;
+  }
+</style>
