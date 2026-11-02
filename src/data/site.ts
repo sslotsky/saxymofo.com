@@ -3,7 +3,7 @@ export const site = {
   person: "Sam Slotsky",
   tagline: "Twin Cities saxophonist",
   description:
-    "Sam Slotsky is a Twin Cities saxophonist on soprano, alto and bari, playing jazz, blues, klezmer, bluegrass and classic rock, and teaching lessons.",
+    "Sam Slotsky is a Twin Cities saxophonist on soprano, alto and tenor, playing jazz, blues, klezmer, bluegrass and classic rock, and teaching lessons.",
   instagram: "https://www.instagram.com/saxymofo/",
   x: "https://x.com/TheSaxyMofo",
   calendly: "https://calendly.com/saxymofo/30min",

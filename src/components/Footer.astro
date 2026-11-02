@@ -31,8 +31,12 @@ import { site } from "../data/site";
   .site-footer {
     border-top: 1px solid var(--line);
     background:
-      linear-gradient(180deg, rgb(122 52 99 / 0.28), transparent 18rem),
-      var(--night);
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--glow) 28%, transparent),
+        transparent 18rem
+      ),
+      var(--bg);
   }
 
   .base {
@@ -63,6 +67,6 @@ import { site } from "../data/site";
   }
 
   a:hover {
-    color: var(--brass);
+    color: var(--accent-2);
   }
 </style>

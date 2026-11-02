@@ -37,6 +37,11 @@ const image = new URL("/og.jpg", Astro.site);
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@TheSaxyMofo" />
+    <script is:inline>
+      // Temporary: preview candidate palettes with ?palette=blue-note|green-room|handbill
+      const palette = new URLSearchParams(location.search).get("palette");
+      if (palette) document.documentElement.dataset.palette = palette;
+    </script>
   </head>
   <body>
     <a class="skip visually-hidden" href="#main">
@@ -60,7 +65,7 @@ const image = new URL("/og.jpg", Astro.site);
     clip-path: none;
     z-index: 20;
     padding: 0.5rem 1rem;
-    background: var(--brass);
-    color: var(--night);
+    background: var(--accent-2);
+    color: var(--bg);
   }
 </style>

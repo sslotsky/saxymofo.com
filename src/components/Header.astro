@@ -27,7 +27,7 @@ const path = Astro.url.pathname.replace(/\/?$/, "/");
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgb(21 14 27 / 0.82);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
@@ -46,12 +46,12 @@ const path = Astro.url.pathname.replace(/\/?$/, "/");
     font-weight: 800;
     font-size: 1.6rem;
     letter-spacing: -0.03em;
-    color: var(--paper);
+    color: var(--text);
     text-decoration: none;
   }
 
   .wordmark span {
-    color: var(--tangerine);
+    color: var(--accent);
   }
 
   nav {
@@ -70,12 +70,12 @@ const path = Astro.url.pathname.replace(/\/?$/, "/");
   }
 
   nav a:hover {
-    color: var(--paper);
+    color: var(--text);
   }
 
   nav a[aria-current="page"] {
-    color: var(--paper);
-    border-bottom-color: var(--tangerine);
+    color: var(--text);
+    border-bottom-color: var(--accent);
   }
 
   @media (max-width: 30rem) {

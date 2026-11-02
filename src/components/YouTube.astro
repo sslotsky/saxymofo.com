@@ -47,7 +47,7 @@ const { id, title } = Astro.props;
     aspect-ratio: 16 / 9;
     border-radius: var(--radius);
     overflow: hidden;
-    background: var(--night-raised);
+    background: var(--surface);
     border: 1px solid var(--line);
   }
 
@@ -70,7 +70,7 @@ const { id, title } = Astro.props;
     height: 4.5rem;
     translate: -50% -50%;
     border-radius: 50%;
-    background: var(--tangerine);
+    background: var(--accent);
     box-shadow: 0 8px 30px rgb(0 0 0 / 0.4);
     transition: scale 0.15s;
   }
@@ -82,7 +82,7 @@ const { id, title } = Astro.props;
     translate: -50% -50%;
     border-style: solid;
     border-width: 0.8rem 0 0.8rem 1.3rem;
-    border-color: transparent transparent transparent var(--night);
+    border-color: transparent transparent transparent var(--bg);
   }
 
   .video a:hover .play {

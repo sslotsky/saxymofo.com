@@ -53,7 +53,7 @@ const { shows, past = false } = Astro.props;
     gap: 1.25rem;
     align-items: center;
     padding: 1rem 1.25rem;
-    background: var(--night-raised);
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
   }
@@ -64,8 +64,8 @@ const { shows, past = false } = Astro.props;
     min-width: 4rem;
     padding: 0.4rem 0.6rem;
     border-radius: 10px;
-    background: var(--tangerine);
-    color: var(--night);
+    background: var(--accent);
+    color: var(--bg);
     font-family: var(--display);
     line-height: 1;
   }
@@ -97,7 +97,7 @@ const { shows, past = false } = Astro.props;
 
   .past time {
     background: var(--line);
-    color: var(--paper);
+    color: var(--text);
   }
 
   @media (max-width: 34rem) {
